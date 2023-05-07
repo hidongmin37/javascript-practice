@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>첨부파일 썸네일</title>
+    <style>
+      label[for='attach'] div {
+        width: 150px;
+        height: 150px;
+        background-image: url('attachment.svg');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="attach">
+      <div></div>
+    </label>
+    <input type="file" id="attach" style="display: none" />
+  </body>
+  <script>
+    // 업로드한 파일은 input객체의 프로퍼티에 존재한다.
+    const file = document.querySelector("input[type='file']");
+    // change :  해당 객체에 변화가 있을 때 (파일이 업로드 되었을 때)
+    file.addEventListener('change', function (e) {
+      var reader = new FileReader();
+      //업로드한 파일을 읽어와서 암호화된 url정보를 얻을 수 있다.
+      reader.readAsDataURL(e.target.files[0]);
+      //전달받은 파일 정보를 모두 로딩했을때
+      reader.onload = function (e) {
+        //암호화된 절대 경로를 가져와서
+        let url = e.target.result;
+        //기존 이미지에서 썸네일 이미지로 대체
+        if (url.includes('image')) {
+          document.querySelector('label > div').style.backgroundImage = 'url(' + url + ')';
+        } else {
+          //미리 준비해놓은 이미지로 대체
+          document.querySelector('label > div').style.backgroundImage = 'url(image.svg)';
+        }
+      };
+    });
+  </script>
+</html>

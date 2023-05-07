@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>name 속성을 이용한 선택</title>
+  </head>
+  <body>
+    <h1>name 속성을 이용한 선택</h1>
+    <form name="joinForm">
+      <div>
+        <input type="text" name="id" placeholder="아이디" />
+      </div>
+      <div>
+        <input type="password" name="pw" placeholder="비밀번호" />
+      </div>
+      <div>
+        <input type="checkbox" name="lang" value="java" /> JAVA
+        <input type="checkbox" name="lang" value="charset" /> C
+        <input type="checkbox" name="lang" value="python" /> Python
+        <!-- html checked는 사용하지 말것, 자바스크립트 checked를 사용할 것 -->
+      </div>
+    </form>
+  </body>
+  <script>
+    const pw = document.getElementsByName('pw');
+    // form태그에 name속성을 사용하면, 따로 객체로 불러올 필요없이 바로 사용가능하다.
+    console.log(joinForm.pw);
+    console.log(joinForm.id.value);
+    if (!joinForm.id.value) {
+      alert('아이디를 입력해주세요!');
+    }
+
+    const checkboxes = document.getElementsByName('lang');
+    checkboxes.forEach((checkbox) => {
+      console.log('-start--');
+
+      console.log(checkbox.getAttribute('checked'));
+      console.log('------');
+      console.log(checkbox.checked);
+      checkbox.checkbox = false;
+    });
+  </script>
+</html>

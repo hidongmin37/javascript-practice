@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function* testGen() {
+      yield '동민';
+      yield 2;
+      yield 3;
+      return 4;
+    }
+    // 위 함수가 제너레이터 함수 --> 얘는 호출하면 --> 바로 코드가 실행되는 것은 X --> 호출하면 "이터레이터 객체"를 반환.
+    // iterator 반복자 객체를 반환 --> 보통it또는 iter라는 이름으로 받는다.
+    // 객체니깐 내부적으로 어떤 메서드를 가지게 되는데 --> next()메서드 (제너레이터의 주요 메서드)
+
+    const iter = testGen(); //iterator 객체를 반환 --> 이 객체에는 --> next()메서드가 존재 --> next()실행될때마다,
+    //처음 나오는 yield부분가지 실행하고 멈춘다.(또는 제어권을 호출자에게 양도한다.)
+    // yield에서 멈췄을 때 --> yield 뒤의 "값"을 반환
+    // 만약 yield 키워드 뒤에 아무런 "값이 없다면" --> undefined값이 반환
+    // 결론 --> next()메서드 --> 항상 value,done 2개의 속성을 가진 "객체"를 반환
+    // 어떻게? --> {value:1,done:false}
+    // value는 yield 뒤의 값, done은 함수 코드 실행이 끝났으면 true, 아니면 false를 반환
+    console.log(iter.next()); // {value:1,done:false}
+    console.log(iter.next()); // {value:2,done:false}
+    console.log(iter.next()); // {value:3,done:false}
+    console.log(iter.next()); // {value:4,done:true}
+
+    //동작
+    //next() --> yield --> next() --> yield 이러한 식의 순환으로 동작이 진행
+    // 이러한 흐름대로 해당함수가 종료될때가지 진행이됨. 보통 return을 만나면서 종료
+    console.log('------------');
+    console.clear();
+    function* testGen2() {
+      const a = yield 1;
+      const b = yield a * 2;
+      const c = yield b + 2;
+      return a * b * c;
+    }
+    let iterTest = testGen2();
+    console.log(iterTest.next());
+    console.log(iterTest.next(3));
+    console.log(iterTest.next(8));
+    console.log(iterTest.next(2));
+
+    // 정리
+    // 위 코드의 값을 바꿔가면서 next()메서드 실행시 어떤 값이 반환될지 를 연습.
+    //위 실습을 통해서 알 수 있듯이, 제너레이터함수와 이터레이터 객체의 next()메서드는 서로 데이터를 주고 받을 수 있다라는 점.
+  </script>
+</html>

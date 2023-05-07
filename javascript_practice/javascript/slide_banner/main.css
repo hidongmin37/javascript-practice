@@ -1,0 +1,53 @@
+section.container {
+  width: 90vw;
+  height: 180px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+div.banner {
+  width: 540vw;
+  /* transform: translate(-0vw); */
+}
+div.banner div {
+  width: 90vw;
+  float: left;
+}
+div img {
+  width: 100%;
+}
+div.arrow-wrap {
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 50px;
+  flex-direction: column;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+}
+div.arrow {
+  position: absolute;
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: #0000002e;
+  cursor: pointer;
+  top: 38%;
+}
+
+div.next {
+  right: 30px;
+}
+
+div.prev {
+  left: 30px;
+}
+div.btns {
+  width: 90vw;
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+}

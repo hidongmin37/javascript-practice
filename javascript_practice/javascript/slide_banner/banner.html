@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>슬라이드 배너</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <section class="container">
+      <div class="arrow-wrap">
+        <div class="arrow prev">&lt;</div>
+      </div>
+      <div class="banner">
+        <div>
+          <img src="img/banner(1).png" alt="" />
+        </div>
+        <div>
+          <img src="img/banner(2).png" alt="" />
+        </div>
+        <div>
+          <img src="img/banner(3).png" alt="" />
+        </div>
+        <div>
+          <img src="img/banner(4).png" alt="" />
+        </div>
+        <div>
+          <img src="img/banner(5).png" alt="" />
+        </div>
+        <div>
+          <img src="img/banner(6).png" alt="" />
+        </div>
+      </div>
+      <div class="arrow next">&gt;</div>
+      <div class="btns">
+        <button class="btn">1</button>
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+        <button class="btn">4</button>
+        <button class="btn">5</button>
+        <button class="btn">6</button>
+      </div>
+    </section>
+  </body>
+  <script>
+    const div = document.querySelector('div.banner');
+    const arrows = document.querySelectorAll('div.arrow');
+    const firDiv = document.createElement('div');
+    const lastDiv = document.createElement('div');
+
+    let count = 0;
+    firDiv.innerHTML = '<img src="img/banner(6).png">';
+    div.insertBefore(firDiv, document.querySelector('div.banner div'));
+
+    lastDiv.innerHTML = '<img src="img/banner(1).png">';
+    div.appendChild(firDiv);
+
+    setInterval(autoSlide, 1000);
+    div.style.transform = 'translate(-90vw)';
+    function autoSlide() {
+      count++;
+      if (count == 6) {
+        div.style.transform = 'translate(-' + 90 * (count + 1) + 'vw)';
+        count = 0;
+        setTimeout(function () {
+          div.style.transform = 'translate(-' + 90 + 'vw)';
+          div.style.transition = 'transform 0s';
+        }, 500);
+      } else {
+        div.style.transform = 'translate(-' + 90 * (count + 1) + 'vw)';
+        div.style.transition = 'transform 0.5s';
+      }
+    }
+
+    //이전 버튼, 다음버튼
+    arrows.forEach((arrow) => {
+      arrow.addEventListener('click', function () {
+        let arrowType = arrow.classList[1];
+        if (arrowType == 'prev') {
+          count--;
+          if (count == -1) {
+            count = 5;
+          }
+        } else {
+          count++;
+          if (count == 6) {
+            count = 0;
+          }
+        }
+        div.style.transform = 'translate(-' + 90 * count + 'vw)';
+      });
+    });
+    const btnNumber = document.querySelectorAll('div button');
+    console.log(btnNumber);
+    btnNumber.forEach((v, i) => {
+      v.addEventListener('click', function () {
+        count = i;
+        div.style.transform = 'translate(-' + 90 * count + 'vw)';
+      });
+    });
+  </script>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS 선택자를 이용한 선택</title>
+  </head>
+  <body>
+    <h1>CSS선택자를 이용한 선택</h1>
+    <p>첫번째 단락이에요!</p>
+    <ul>
+      <li class="odd">김치찌개</li>
+      <li class="even">된장찌개</li>
+      <li class="odd">부대찌개</li>
+      <li class="even">카레돈까스</li>
+      <li class="odd">제육볶음</li>
+    </ul>
+  </body>
+  <script>
+    const p = document.querySelector('body p');
+    console.log(p.innerHTML);
+    p.innerHTML = '수정된 단락이에요!';
+    // 짝수는 글자색을 마젠타로 변경
+    // 홀수는 글자색을 보라색으로 변경
+    const odd = document.getElementsByClassName('odd');
+    const even = document.getElementsByClassName('even');
+    HTMLCollection.prototype.forEach = Array.prototype.forEach;
+
+    odd.forEach((v) => {
+      v.style.color = 'magenta';
+    });
+    even.forEach((v) => {
+      v.style.color = 'purple';
+    });
+  </script>
+</html>

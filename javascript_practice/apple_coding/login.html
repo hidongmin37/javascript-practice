@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #333;
+        border-radius: 5px;
+        width: 80%;
+        max-width: 600px;
+      }
+      #close {
+        float: right;
+        cursor: pointer;
+      }
+      #close:hover {
+        color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-bg">
+      <h4>Shirts on sale</h4>
+      <button id="login" class="btn btn-danger">로그인</button>
+    </div>
+
+    <div id="myModal" class="black-bg modal">
+      <div class="white-bg modal-content">
+        <h4>로그인 하세요</h4>
+        <form action="success.html">
+          <div class="my-3">
+            <input type="text" class="form-control" id="email" />
+          </div>
+          <div class="my-3">
+            <input type="password" class="form-control" 0 />
+          </div>
+          <button type="submit" class="btn btn-primary" id="send"></button>
+          <button type="button" class="btn btn-primary" id="close">닫기</button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+    let loginBtn = document.querySelector('#login');
+    console.log(loginBtn);
+    let blackBg = document.querySelector('.black-bg');
+
+    let modal = document.getElementById('myModal');
+    let closeBtn = document.getElementById('close');
+
+    // 모달 열기
+    loginBtn.addEventListener('click', function () {
+      modal.style.display = 'block';
+    });
+
+    // 모달 닫기
+    closeBtn.addEventListener('click', function () {
+      modal.style.display = 'none';
+    });
+
+    // 모달 외부 클릭 시 닫기
+    window.addEventListener('click', function (event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</html>

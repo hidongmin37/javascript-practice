@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .slide-container {
+        width: 1500px;
+        display: flex;
+        /* margin-left: -800px; */
+
+        /* transform: translateX('-400px'); */
+      }
+      .slide-box {
+        width: 300px;
+      }
+      .slide-box img {
+        width: 100%;
+      }
+      .container {
+        width: 300px;
+      }
+      .navbar {
+        position: fixed;
+        width: 100%;
+        z-index: 5;
+      }
+      .navbar-brand {
+        font-size: 30px;
+        transition: all 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex; align-items: center">
+      <div id="prev" style="font-size: 30px"><</div>
+      <div class="container" style="overflow: hidden">
+        <div class="slide-container" style="transform: translateX(0px)">
+          <div class="slide-box">
+            <img src="./img/car3.png" />
+          </div>
+          <div class="slide-box">
+            <img src="./img/car1.png" />
+          </div>
+          <div class="slide-box">
+            <img src="./img/car2.png" />
+          </div>
+          <div class="slide-box">
+            <img src="./img/car3.png" />
+          </div>
+          <div class="slide-box">
+            <img src="./img/car1.png" />
+          </div>
+        </div>
+      </div>
+      <div id="next" style="font-size: 30px">></div>
+    </div>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <span class="navbar-brand">JSShop</span>
+        <span class="ms-auto mx-3 badge bg-dark">JSShop</span>
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+    <div style="height: 1000px"></div>
+  </body>
+  <script>
+    let slide1 = document.querySelector('.slide-1');
+    let slide2 = document.querySelector('.slide-2');
+    let slide3 = document.querySelector('.slide-3');
+    let prevBtn = document.querySelector('#prev');
+    let nextBtn = document.querySelector('#next');
+
+    let slideContainer = document.querySelector('.slide-container');
+    let count = 0;
+    console.log(slide2);
+    slide1.addEventListener('click', () => {
+      count = 1;
+      slideContainer.style = 'transform:translateX(' + -300 * count + 'px);transition: all 1s;';
+    });
+    slide2.addEventListener('click', () => {
+      count = 2;
+      slideContainer.style = 'transform:translateX(' + -300 * count + 'px);transition: all 1s;';
+    });
+    slide3.addEventListener('click', () => {
+      count = 3;
+      slideContainer.style = 'transform:translateX(' + -300 * count + 'px);transition: all 1s;';
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (count == 0) {
+        count = 2;
+        slideContainer.style = 'transform:translateX(' + -300 * count + 'px);transition: all 0s;';
+      } else if (count != 0) {
+        count += -1;
+        slideContainer.style = 'transform:translateX(' + -300 * count + 'px);transition: all 1s;';
+      }
+    });
+    nextBtn.addEventListener('click', () => {
+      if (count == 3) {
+        count = 0;
+        slideContainer.style = 'transform:translateX(' + -300 * count + 'px);transition: all 0s;';
+      } else if (count != 3) {
+        count += 1;
+        slideContainer.style = 'transform:translateX(' + -300 * count + 'px);transition: all 1s;';
+      }
+    });
+  </script>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      // console.log(window.scrollY);
+      // console.log(window.pageYOffset);
+      // window.scrollTo(0, 10);
+      // window.scrollBy(0, 10);
+    });
+    let fontChange = document.querySelector('.navbar-brand');
+    window.addEventListener('scroll', function () {
+      // if (window.scrollY > 100) {
+      // fontChange.style = 'font-size:' + window.scrollY + 'px';
+      // } else {
+      // fontChange.style = 'font-size:20px';
+      // }
+    });
+
+    let 스크롤양 = document.querySelector('html').scrollY;
+    let 실제높이 = document.querySelector('html').scrollHeight;
+    let 높이 = document.querySelector('html').clientHeight;
+    console.log(스크롤양);
+    console.log(실제높이);
+    console.log(높이);
+  </script>
+</html>
